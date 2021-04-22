@@ -1,0 +1,26 @@
+# yamllint disable
+apiVersion: v1
+kind: Secret
+metadata:
+    name: home-assistant
+    namespace: home
+stringData:
+    HASS_API_PASSWORD: 
+    HASS_DARKSKY_API_KEY: 
+    HASS_DB_URL: 
+    HASS_DEPLOY_KEY_B64: 
+    HASS_ECOBEE_API_KEY: 
+    HASS_ELEVATION: 
+    HASS_FLUME_CLIENT_ID: 
+    HASS_FLUME_CLIENT_SECRET: 
+    HASS_FLUME_PASSWORD: 
+    HASS_FLUME_USERNAME: 
+    HASS_GOOGLE_PROJECT_ID: 
+    HASS_GOOGLE_SECURE_DEVICES_PIN: 
+    HASS_LATITUDE: 
+    HASS_LONGITUDE: 
+    HASS_OPENGARAGE_DEVICE_KEY: 
+    HASS_OPENGARAGE_HOST: 
+    HASS_TOKEN: 
+    HASS_MQTT_PASSWORD: 
+    HASS_MQTT_USERNAME: 
