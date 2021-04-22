@@ -23,9 +23,9 @@ spec:
       tag: 2021.4.6
     env:
       TZ: "America/Denver"
-    envFrom:
-    - secretRef:
-        name: home-assistant
+    #envFrom:
+    #- secretRef:
+    #    name: home-assistant
     hostNetwork: true
     dnsPolicy: ClusterFirstWithHostNet
     service:
