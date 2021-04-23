@@ -18,6 +18,10 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
+    image:
+      registry: k8s.gcr.io
+      respository: external-dns/external-dns
+      tag: v0.7.6
     logLevel: debug
     provider: cloudflare
     cloudflare:
