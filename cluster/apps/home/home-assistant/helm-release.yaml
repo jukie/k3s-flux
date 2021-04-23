@@ -38,13 +38,13 @@ spec:
       annotations:
         kubernetes.io/ingress.class: "external"
       hosts:
-      - host: "hass.${SECRET_CLUSTER_DOMAIN}"
+      - host: "hass.${SECRET_DOMAIN}"
         paths:
         - path: /
           pathType: Prefix
       tls:
       - hosts:
-        - "hass.${SECRET_CLUSTER_DOMAIN}"
+        - "hass.${SECRET_DOMAIN}"
     affinity:
       nodeAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:
