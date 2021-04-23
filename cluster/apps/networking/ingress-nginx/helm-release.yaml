@@ -20,10 +20,9 @@ spec:
       ingressClass: nginx
       replicaCount: 1
       service:
-        annotations:
-          metallb.universe.tf/address-pool: production
-        type: LoadBalancer
-        loadBalancerIP: "${SECRET_PUBLIC_IP}"
+        #type: LoadBalancer
+        externalIPs: 
+        - "${SECRET_PUBLIC_IP}"
         externalTrafficPolicy: Local
       config:
         ssl-protocols: "TLSv1.3 TLSv1.2"

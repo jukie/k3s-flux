@@ -34,7 +34,3 @@ spec:
         protocol: bgp
         addresses:
         - "${METALLB_LB_RANGE}"
-      - name: production
-        protocol: layer2
-        addresses:
-        - "{$SECRET_PUBLIC_IP}/32"
