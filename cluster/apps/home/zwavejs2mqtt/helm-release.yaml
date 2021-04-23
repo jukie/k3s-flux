@@ -1,0 +1,53 @@
+
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: zwavejs2mqtt
+  namespace: home
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
+      chart: zwavejs2mqtt
+      version: 3.4.1
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    image:
+      repository: zwavejs/zwavejs2mqtt
+      pullPolicy: IfNotPresent
+      tag: 3.5.0
+    env:
+      NETWORK_KEY: "${SECRET_ZWAVE_KEY}"
+    service:
+      type: LoadBalancer
+      loadBalancerIP: "${CLUSTER_LB_ZWAVEJS}"
+    resources:
+      requests:
+        cpu: 100m
+        memory: 100Mi
+      limits:
+        memory: 4000Mi
+    securityContext:
+      privileged: true
+    additionalVolumeMounts:
+      - name: zwave-usb
+        mountPath: "${SECRET_ZWAVE_SERIAL}"
+    additionalVolumes:
+      - name: zwave-usb
+        hostPath:
+          path: "${SECRET_ZWAVE_SERIAL}"
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+          - matchExpressions:
+            - key: zwave
+              operator: In
+              values:
+              - "true"
