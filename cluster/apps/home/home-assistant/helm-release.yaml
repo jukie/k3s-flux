@@ -28,15 +28,16 @@ spec:
     #    name: home-assistant
     hostNetwork: true
     dnsPolicy: ClusterFirstWithHostNet
-    service:
-      type: LoadBalancer
-      externalIPs:
-      - "${CLUSTER_LB_HOME_ASSISTANT}"
-      externalTrafficPolicy: Local
+    #service:
+    #  type: LoadBalancer
+    # externalIPs:
+    #  - "${CLUSTER_LB_HOME_ASSISTANT}"
+    #  externalTrafficPolicy: Local
     ingress:
       enabled: true
       annotations:
         kubernetes.io/ingress.class: "external"
+        nginx.org/websocket-services: home-assistant
       hosts:
       - host: "hass.${SECRET_DOMAIN}"
         paths:

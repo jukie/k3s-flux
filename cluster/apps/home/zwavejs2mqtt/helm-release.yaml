@@ -25,6 +25,8 @@ spec:
     env:
       NETWORK_KEY: "${SECRET_ZWAVE_KEY}"
     service:
+      annotations:
+          metallb.universe.tf/address-pool: default
       type: LoadBalancer
       loadBalancerIP: "${CLUSTER_LB_ZWAVEJS}"
     resources:

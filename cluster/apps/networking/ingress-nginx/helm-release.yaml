@@ -20,6 +20,8 @@ spec:
       ingressClass: nginx
       replicaCount: 1
       service:
+        annotations:
+          metallb.universe.tf/address-pool: production
         type: LoadBalancer
         loadBalancerIP: "${SECRET_PUBLIC_IP}"
         externalTrafficPolicy: Local

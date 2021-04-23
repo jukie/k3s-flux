@@ -33,12 +33,16 @@ spec:
       limits:
         memory: 4000Mi
     serviceDns:
+      annotations:
+          metallb.universe.tf/address-pool: default
       type: LoadBalancer
       externalTrafficPolicy: Local
       loadBalancerIP: "${CLUSTER_LB_PIHOLE}"
       annotations:
         metallb.universe.tf/allow-shared-ip: pihole-svc
     serviceWeb:
+      annotations:
+          metallb.universe.tf/address-pool: default
       http:
         enabled: true
         port: 80
