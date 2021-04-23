@@ -19,14 +19,13 @@ spec:
       interval: 5m
   values:
     logLevel: debug
-    provider: coredns
-    coredns:
-      # etcdEndpoints: http://etcd:2379
-      etcdEndpoints: https://192.168.5.42:2379
-      etcdTLS:
-        enabled: flase
-        secretName: etcd-certs
+    provider: cloudflare
+    cloudflare:
+      apiToken: ${SECRET_CLOUDFLARE_TOKEN}
+      proxied: true
     policy: sync
+    zoneIdFilters: 
+    - ${SECRET_CLOUDFLARE_ZONE}
     domainFilters:
     - ${SECRET_DOMAIN}
     createSecret: true
