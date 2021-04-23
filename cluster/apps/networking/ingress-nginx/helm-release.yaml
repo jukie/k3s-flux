@@ -20,9 +20,9 @@ spec:
       ingressClass: nginx
       replicaCount: 1
       service:
-        type: ClusterIP
-        externalIPs: []
-        #- "${SECRET_PUBLIC_IP}"
+        externalIPs:
+        - "${SECRET_PUBLIC_IP_INGRESS}"
+        #- "${INGRESS_NGINX_LB}"
         externalTrafficPolicy: Local
       config:
         ssl-protocols: "TLSv1.3 TLSv1.2"
