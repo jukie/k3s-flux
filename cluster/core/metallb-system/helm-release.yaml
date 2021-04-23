@@ -34,3 +34,7 @@ spec:
         protocol: bgp
         addresses:
         - "${METALLB_LB_RANGE}"
+      - name: producttion
+        protocol: bgp
+        addresses:
+        - "{$SECRET_PUBLIC_IP}/32"
