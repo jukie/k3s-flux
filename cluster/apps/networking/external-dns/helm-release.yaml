@@ -24,7 +24,7 @@ spec:
       # etcdEndpoints: http://etcd:2379
       etcdEndpoints: https://192.168.5.42:2379
       etcdTLS:
-        enabled: true
+        enabled: flase
         secretName: etcd-certs
     policy: sync
     domainFilters:
