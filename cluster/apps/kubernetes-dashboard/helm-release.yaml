@@ -1,0 +1,33 @@
+
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: kubernetes-dashboard
+  namespace: kubernetes-dashboard
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://kubernetes.github.io/dashboard/
+      chart: kubernetes-dashboard
+      version: 4.0.3
+      sourceRef:
+        kind: HelmRepository
+        name: kubernetes-dashboard
+        namespace: flux-system
+      interval: 5m
+  values:
+    extraArgs:
+      - --auto-generate-certificates
+      - --namespace=kubernetes-dashboard
+      - --token-ttl=0
+    service:
+      loadBalancerIP: 192.168.2.5
+      type: LoadBalancer
+    resources:
+      requests:
+        cpu: 100m
+        memory: 100Mi
+      limits:
+        memory: 4000Mi

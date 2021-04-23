@@ -1,8 +1,4 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- default
-- home
-- kubernetes-dashboard
-- networking
-- system-upgrade
+- helm-release.yaml
