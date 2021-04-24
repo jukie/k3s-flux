@@ -18,7 +18,7 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
-    config: "daemon=600\nuse=web\nweb=ifconfig.me/ip\nprotocol=cloudflare\nssl=yes\nttl=1\nlogin=${SECRET_CLOUDFLARE_EMAIL}\npassword=${SECRET_CLOUDFLARE_TOKEN}\nzone=${SECRET_DOMAIN}\n${SECRET_DOMAIN}\n"
+    config: "daemon=600\nuse=web\nweb=ifconfig.me/ip\nprotocol=cloudflare\nssl=yes\nttl=1\nlogin=${SECRET_CLOUDFLARE_EMAIL}\npassword=${SECRET_CLOUDFLARE_API_KEY}\nzone=${SECRET_DOMAIN}\n${SECRET_DOMAIN}\n"
     resources:
       requests:
         memory: 250Mi
