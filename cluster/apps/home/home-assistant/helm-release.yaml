@@ -38,6 +38,7 @@ spec:
       annotations:
         kubernetes.io/ingress.class: "nginx"
         nginx.org/websocket-services: home-assistant
+        external-dns.alpha.kubernetes.io/target: ${SECRET_DOMAIN}
       hosts:
       - host: "hass.${SECRET_DOMAIN}"
         paths:

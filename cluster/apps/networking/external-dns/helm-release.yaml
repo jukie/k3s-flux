@@ -32,6 +32,7 @@ spec:
     - ${SECRET_CLOUDFLARE_ZONE}
     domainFilters:
     - ${SECRET_DOMAIN}
+    registry: "txt"
     createSecret: true
     crd:
       create: true

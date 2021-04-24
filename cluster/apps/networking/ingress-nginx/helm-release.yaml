@@ -21,8 +21,8 @@ spec:
       replicaCount: 1
       service:
         loadBalancerIP: "${INGRESS_NGINX_LB}"
-        externalIPs:
-        - "${SECRET_PUBLIC_IP_INGRESS}"
+        #externalIPs:
+        #- "${SECRET_PUBLIC_IP_INGRESS}"
         #- "${INGRESS_NGINX_LB}"
         externalTrafficPolicy: Local
       config:
