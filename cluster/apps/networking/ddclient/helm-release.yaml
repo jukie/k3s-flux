@@ -1,0 +1,27 @@
+
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: ddclient
+  namespace: networking
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://charts.bitnami.com/bitnami
+      chart: ddclient
+      version: 4.0.2
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    config: "daemon=600\nuse=web\nweb=ifconfig.me/ip\nprotocol=cloudflare\nssl=yes\nttl=1\nlogin=${SECRET_CLOUDFLARE_EMAIL}\npassword=${SECRET_CLOUDFLARE_TOKEN}\nzone=${SECRET_DOMAIN}\n${SECRET_DOMAIN}\n"
+    resources:
+      requests:
+        memory: 250Mi
+        cpu: 25m
+      limits:
+        memory: 500Mi
