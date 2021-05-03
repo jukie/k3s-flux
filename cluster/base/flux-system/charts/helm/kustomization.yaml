@@ -8,3 +8,4 @@ resources:
 - kubernetes-dashboard.yaml
 - pihole.yaml
 - longhorn.yaml
+- prometheus-community-charts.yaml

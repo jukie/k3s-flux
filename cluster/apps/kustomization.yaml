@@ -6,3 +6,4 @@ resources:
 - kubernetes-dashboard
 - networking
 - system-upgrade
+- monitoring
