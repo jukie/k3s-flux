@@ -29,6 +29,10 @@ spec:
           metallb.universe.tf/address-pool: default
       type: LoadBalancer
       loadBalancerIP: "${CLUSTER_LB_ZWAVEJS}"
+      additionalPorts:
+      - port:
+        port: 3000
+        name: ws
     resources:
       requests:
         cpu: 100m
