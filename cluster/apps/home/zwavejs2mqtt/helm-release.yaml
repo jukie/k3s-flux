@@ -37,6 +37,14 @@ spec:
         memory: 4000Mi
     securityContext:
       privileged: true
+    persistence:
+      config:
+        enabled: true
+        accessModes:
+        - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
     additionalVolumeMounts:
       - name: zwave-usb
         mountPath: "${SECRET_ZWAVE_SERIAL}"
