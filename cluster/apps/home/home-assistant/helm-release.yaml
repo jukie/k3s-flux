@@ -56,6 +56,14 @@ spec:
               operator: In
               values:
               - "true"
+    persistence:
+      config:
+        enabled: true
+        accessModes:
+        - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
     prometheus:
       serviceMonitor:
         enabled: false
