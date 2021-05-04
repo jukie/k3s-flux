@@ -127,7 +127,6 @@ spec:
       ingressClassName: "nginx"
       annotations:
         external-dns.alpha.kubernetes.io/target: ${SECRET_DOMAIN}
-        nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
       hosts:
       - "grafana.${SECRET_DOMAIN}"
       tls:
