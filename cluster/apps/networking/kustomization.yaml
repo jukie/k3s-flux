@@ -6,3 +6,4 @@ resources:
 - ddclient
 - ingress-nginx
 - wildcard-certificate
+- traefik
