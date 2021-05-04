@@ -78,7 +78,7 @@ spec:
         externalTrafficPolicy: Local
     prometheus:
       serviceMonitor:
-        enabled: false
+        enabled: true
     podAnnotations:
       configmap.reloader.stakater.com/reload: "blocky-config"
     affinity:

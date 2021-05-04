@@ -10,3 +10,4 @@ resources:
 - longhorn.yaml
 - prometheus-community-charts.yaml
 - grafana-charts.yaml
+- stakater-charts.yaml
