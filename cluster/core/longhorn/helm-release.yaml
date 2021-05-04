@@ -19,5 +19,6 @@ spec:
     service:
       ui:
         type: LoadBalancer
+        loadBalancerIP: "${CLUSTER_LB_LONGHORN}"
     persistence:
       defaultClassReplicaCount: 2
