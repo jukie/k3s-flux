@@ -30,8 +30,7 @@ spec:
       type: LoadBalancer
       loadBalancerIP: "${CLUSTER_LB_ZWAVEJS}"
       additionalPorts:
-      - port:
-        port: 3000
+      - port: 3000
         name: ws
     resources:
       requests:
