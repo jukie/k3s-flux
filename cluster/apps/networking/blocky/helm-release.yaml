@@ -43,6 +43,9 @@ spec:
           - ads
       clientLookup:
         upstream: udp:192.168.5.1
+      customDNS:
+        mapping:
+          k3s: 192.168.5.41,192.168.5.42,192.168.5.43
       prometheus:
         enable: true
         path: /metrics
