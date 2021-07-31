@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: blocky
-      version: 6.3.1
+      version: 7.1.1
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home-charts
@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: spx01/blocky
-      tag: v0.13
+      tag: v0.1
     env:
       TZ: "America/Denver"
     replicas: 3
@@ -54,32 +54,39 @@ spec:
       httpPort: 4000
       logLevel: info
     service:
-      port:
-        port: 4000
-      additionalServices:
+      main:
+        ports:
+          http:
+          - protocol: TCP
+            port: 4000
+      dns-tcp:
       - enabled: true
         annotations:
           metallb.universe.tf/allow-shared-ip: blocky-svc
         nameSuffix: dns-tcp
         type: LoadBalancer
         loadBalancerIP: "${CLUSTER_LB_BLOCKY}"
-        port:
-          port: 53
-          name: dns-tcp
-          protocol: TCP
-          targetPort: 53
+        ports:
+          http:
+          - port: 53
+            name: dns-tcp
+            protocol: TCP
+            targetPort: 53
         externalTrafficPolicy: Local
+      dns-udp:
       - enabled: true
         annotations:
           metallb.universe.tf/allow-shared-ip: blocky-svc
+
         nameSuffix: dns-udp
         type: LoadBalancer
         loadBalancerIP: "${CLUSTER_LB_BLOCKY}"
-        port:
-          port: 53
-          name: dns-udp
-          protocol: UDP
-          targetPort: 53
+        ports:
+          http:
+          - port: 53
+            name: dns-udp
+            protocol: UDP
+            targetPort: 53
         externalTrafficPolicy: Local
     prometheus:
       serviceMonitor:
