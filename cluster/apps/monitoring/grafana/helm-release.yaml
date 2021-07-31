@@ -127,11 +127,15 @@ spec:
       ingressClassName: "nginx"
       annotations:
         external-dns.alpha.kubernetes.io/target: ${SECRET_DOMAIN}
+        cert-manager.io/issuer: cf-issuer
+        cert-manager.io/issuer-kind: OriginIssuer
+        cert-manager.io/issuer-group: cert-manager.k8s.cloudflare.com
       hosts:
       - "grafana.${SECRET_DOMAIN}"
       tls:
       - hosts:
         - "grafana.${SECRET_DOMAIN}"
+        secretName: grafana-tls
     persistence:
       enabled: true
       storageClassName: "longhorn"
