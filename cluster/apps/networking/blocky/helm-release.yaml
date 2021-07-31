@@ -25,6 +25,8 @@ spec:
     replicas: 3
     config: |
       upstream:
+        default:
+        - 192.168.5.1
         externalResolvers:
         - tcp-tls:4838af.dns1.nextdns.io:853
         - tcp-tls:4838af.dns2.nextdns.io:853
