@@ -104,6 +104,7 @@
       "semanticCommitType": "fix",
       "labels": ["renovate/helm", "dep/patch"],
     },
+    // pin package versions
     // {
     //    "matchDatasources": ["helm"],
     //    "allowedVersions": "<15",
@@ -116,18 +117,6 @@
       "automergeType": "branch",
       "requiredStatusChecks": null,
       "matchUpdateTypes": ["minor", "patch"],
-    },
-    {
-      "matchDatasources": ["helm", "docker"],
-      "matchPackagePatterns": ["^blocky"],
-      "groupName": "blocky",
-      "additionalBranchPrefix": "",
-    },
-    {
-      "matchDatasources": ["helm", "docker"],
-      "matchPackagePatterns": ["^kubernetes-dashboard"],
-      "groupName": "kubernetes-dashboard",
-      "additionalBranchPrefix": "",
     },
     {
       "matchPackageNames": [
