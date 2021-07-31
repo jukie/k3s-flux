@@ -19,80 +19,79 @@ spec:
   values:
     image:
       repository: spx01/blocky
-      tag: v0.1
+      tag: v0.14
+    controller:
+      strategy: RollingUpdate
+      replicas: 3
     env:
       TZ: "America/Denver"
-    replicas: 3
-    config: |
-      upstream:
-        default:
-        - 192.168.5.1
-        externalResolvers:
-        - tcp-tls:4838af.dns1.nextdns.io:853
-        - tcp-tls:4838af.dns2.nextdns.io:853
-        - https://dns.google/dns-query
-        - https://cloudflare-dns.com/dns-query
-      blocking:
-        blackLists:
-          ads:
-          # https://oisd.nl/
-          - https://raw.githubusercontent.com/ookangzheng/dbl-oisd-nl/master/dbl.txt
-        whiteLists:
-          ads:
-          - https://raw.githubusercontent.com/anudeepND/whitelist/master/domains/whitelist.txt
-        clientGroupsBlock:
-          default:
-          - ads
-      clientLookup:
-        upstream: udp:192.168.5.1
-      customDNS:
-        mapping:
-          k3s: 192.168.5.41,192.168.5.42,192.168.5.43
-      prometheus:
-        enable: true
-        path: /metrics
-      httpPort: 4000
-      logLevel: info
     service:
       main:
         ports:
           http:
-          - protocol: TCP
             port: 4000
       dns-tcp:
-      - enabled: true
-        annotations:
-          metallb.universe.tf/allow-shared-ip: blocky-svc
-        nameSuffix: dns-tcp
+        enabled: true
         type: LoadBalancer
         loadBalancerIP: "${CLUSTER_LB_BLOCKY}"
-        ports:
-          http:
-          - port: 53
-            name: dns-tcp
-            protocol: TCP
-            targetPort: 53
         externalTrafficPolicy: Local
+        annotations:
+              metallb.universe.tf/allow-shared-ip: blocky-svc
+        ports:
+          dns-tcp:
+            enabled: true
       dns-udp:
-      - enabled: true
-        annotations:
-          metallb.universe.tf/allow-shared-ip: blocky-svc
-
-        nameSuffix: dns-udp
+        enabled: true
         type: LoadBalancer
         loadBalancerIP: "${CLUSTER_LB_BLOCKY}"
-        ports:
-          http:
-          - port: 53
-            name: dns-udp
-            protocol: UDP
-            targetPort: 53
         externalTrafficPolicy: Local
+        annotations:
+              metallb.universe.tf/allow-shared-ip: blocky-svc
+        ports:
+          dns-udp:
+            enabled: true
+
+
     prometheus:
       serviceMonitor:
         enabled: true
     podAnnotations:
       configmap.reloader.stakater.com/reload: "blocky-config"
+    config: |
+      upstream:
+        default:
+        - 192.168.5.1
+        #externalResolvers:
+        #- tcp-tls:4838af.dns1.nextdns.io:853
+        #- tcp-tls:4838af.dns2.nextdns.io:853
+        #- https://dns.google/dns-query
+        #- https://cloudflare-dns.com/dns-query
+      blocking:
+        blackLists:
+          ads:
+          # https://oisd.nl/
+          - https://raw.githubusercontent.com/ookangzheng/dbl-oisd-nl/master/dbl.txt
+          - https://s3.amazonaws.com/lists.disconnect.me/simple_ad.txt
+          - https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
+          - https://mirror1.malwaredomains.com/files/justdomains
+          - http://sysctl.org/cameleon/hosts
+          - https://s3.amazonaws.com/lists.disconnect.me/simple_tracking.txt
+        whiteLists:
+          ads:
+          - https://raw.githubusercontent.com/anudeepND/whitelist/master/domains/whitelist.txt
+          - whitelist.txt
+        clientGroupsBlock:
+          default:
+          - ads
+      caching:
+        prefetching: true
+      clientLookup:
+        upstream: udp:192.168.5.1
+      prometheus:
+        enable: true
+        path: /metrics
+      httpPort: 4000
+      logLevel: info
     affinity:
       podAntiAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:
@@ -108,4 +107,4 @@ spec:
         memory: 100Mi
         cpu: 100m
       limits:
-        memory: 750Mi
+        memory: 300Mi
