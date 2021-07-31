@@ -21,6 +21,14 @@ spec:
     image:
       repository: homeassistant/home-assistant
       tag: 2021.7.4
+    #hostNetwork: true
+    dnsPolicy: ClusterFirstWithHostNet
+    service:
+      main:
+        type: ClusterIP
+        #externalIPs:
+        # - "${CLUSTER_LB_HOME_ASSISTANT}"
+        externalTrafficPolicy: Local
     probes:
       liveness:
         enabled: false
@@ -46,15 +54,15 @@ spec:
         - hosts:
           - "hass.${SECRET_DOMAIN}"
           secretName: hass-tls
-    affinity:
-      nodeAffinity:
-        requiredDuringSchedulingIgnoredDuringExecution:
-          nodeSelectorTerms:
-          - matchExpressions:
-            - key: zwave
-              operator: In
-              values:
-              - "true"
+    #affinity:
+    #  nodeAffinity:
+    #    requiredDuringSchedulingIgnoredDuringExecution:
+    #      nodeSelectorTerms:
+    #      - matchExpressions:
+    #        - key: zwave
+    #          operator: In
+    #          values:
+    #          - "true"
     persistence:
       config:
         enabled: true
