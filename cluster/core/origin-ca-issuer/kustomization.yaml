@@ -8,5 +8,4 @@ resources:
 - https://raw.githubusercontent.com/cloudflare/origin-ca-issuer/trunk/deploy/manifests/deployment.yaml
 - https://raw.githubusercontent.com/cloudflare/origin-ca-issuer/trunk/deploy/manifests/namespace.yaml
 - https://raw.githubusercontent.com/cloudflare/origin-ca-issuer/trunk/deploy/manifests/serviceaccount.yaml
-- secret.yaml
-- issuer.yaml
+- issuer

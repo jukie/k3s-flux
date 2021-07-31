@@ -1,0 +1,6 @@
+resources:
+- networking
+- monitoring
+- kubernetes-dashboard
+- home
+- default

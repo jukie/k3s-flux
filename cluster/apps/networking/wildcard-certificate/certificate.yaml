@@ -9,7 +9,7 @@ spec:
   issuerRef:
     group: cert-manager.k8s.cloudflare.com
     kind: OriginIssuer
-    name: prod-issuer
+    name: cf-issuer
   commonName: "${SECRET_DOMAIN}"
   dnsNames:
   - "${SECRET_DOMAIN}"
