@@ -21,33 +21,31 @@ spec:
     image:
       repository: homeassistant/home-assistant
       tag: 2021.7.4
+    probes:
+      liveness:
+        enabled: false
+      readiness:
+        enabled: false
+      startup:
+        enabled: false
     env:
       TZ: "America/Denver"
-    #envFrom:
-    #- secretRef:
-    #    name: home-assistant
-    hostNetwork: true
-    dnsPolicy: ClusterFirstWithHostNet
-    #service:
-    #  type: LoadBalancer
-    # externalIPs:
-    #  - "${CLUSTER_LB_HOME_ASSISTANT}"
-    #  externalTrafficPolicy: Local
     ingress:
-      enabled: true
-      annotations:
-        kubernetes.io/ingress.class: "nginx"
-        nginx.org/websocket-services: home-assistant
-        external-dns.alpha.kubernetes.io/target: ${SECRET_DOMAIN}
-      hosts:
-      - host: "hass.${SECRET_DOMAIN}"
-        paths:
-        - path: /
-          pathType: Prefix
-      tls:
-      - hosts:
-        - "hass.${SECRET_DOMAIN}"
-        secretName: hass-tls
+      main:
+        enabled: true
+        annotations:
+          kubernetes.io/ingress.class: "nginx"
+          nginx.org/websocket-services: home-assistant
+          external-dns.alpha.kubernetes.io/target: ${SECRET_DOMAIN}
+        hosts:
+        - host: "hass.${SECRET_DOMAIN}"
+          paths:
+          - path: /
+            pathType: Prefix
+        tls:
+        - hosts:
+          - "hass.${SECRET_DOMAIN}"
+          secretName: hass-tls
     affinity:
       nodeAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:
@@ -67,17 +65,10 @@ spec:
             storage: 1Gi
     prometheus:
       serviceMonitor:
-        enabled: false
-    probes:
-      liveness:
-        enabled: false
-      readiness:
-        enabled: false
-      startup:
-        enabled: false
+        enabled: true
     resources:
       requests:
         cpu: 100m
         memory: 100Mi
       limits:
-        memory: 4000Mi
+        memory: 2000Mi
