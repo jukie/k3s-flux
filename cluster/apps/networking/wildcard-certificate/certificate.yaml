@@ -7,9 +7,12 @@ metadata:
 spec:
   secretName: "${SECRET_DOMAIN/./-}-tls"
   issuerRef:
-    name: letsencrypt-production
-    kind: ClusterIssuer
+    group: cert-manager.k8s.cloudflare.com
+    kind: OriginIssuer
+    name: prod-issuer
   commonName: "${SECRET_DOMAIN}"
   dnsNames:
   - "${SECRET_DOMAIN}"
   - "*.${SECRET_DOMAIN}"
+  duration: 168h
+  renewBefore: 24h
