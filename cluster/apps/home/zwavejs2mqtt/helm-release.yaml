@@ -1,4 +1,3 @@
-
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
@@ -19,19 +18,23 @@ spec:
       interval: 5m
   values:
     image:
-      repository: zwavejs/zwavejs2mqtt
+      repository: ghcr.io/zwave-js/zwavejs2mqtt
       pullPolicy: IfNotPresent
       tag: 5.4.3
     env:
+      TZ: "America/Denver"
       NETWORK_KEY: "${SECRET_ZWAVE_KEY}"
     service:
-      annotations:
-          metallb.universe.tf/address-pool: default
-      type: LoadBalancer
-      loadBalancerIP: "${CLUSTER_LB_ZWAVEJS}"
-      additionalPorts:
-      - port: 3000
-        name: ws
+      main:
+        annotations:
+            metallb.universe.tf/address-pool: default
+        type: LoadBalancer
+        loadBalancerIP: "${CLUSTER_LB_ZWAVEJS}"
+        ports:
+          http:
+            port: 8091
+          ws:
+            port: 3000
     resources:
       requests:
         cpu: 100m
@@ -48,13 +51,11 @@ spec:
         resources:
           requests:
             storage: 1Gi
-    additionalVolumeMounts:
-      - name: zwave-usb
-        mountPath: "${SECRET_ZWAVE_SERIAL}"
-    additionalVolumes:
-      - name: zwave-usb
-        hostPath:
-          path: "${SECRET_ZWAVE_SERIAL}"
+      usb:
+        enabled: true
+        type: hostPath
+        hostPath: ${SECRET_ZWAVE_SERIAL}
+        hostPathType: CharDevice
     affinity:
       nodeAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:
