@@ -42,7 +42,7 @@ spec:
         memory:
           limit: 250Mi
           request: 20Mi
-    controllerReplicas: 2
+    controllerReplicas: 1
     controllerResources: &controller_resources
       cpu: &controller_resources_cpu
         limit: ""
