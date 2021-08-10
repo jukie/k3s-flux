@@ -1,3 +1,4 @@
+---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -5,7 +6,6 @@ metadata:
   namespace: linkerd
 spec:
   interval: 10m0s
-  releaseName: linkerd
   chart:
     spec:
       # renovate: registryUrl=https://helm.linkerd.io/stable
@@ -32,7 +32,7 @@ spec:
     installNamespace: false
     identity:
       issuer:
-        crtExpiry: "2022-08-10T04:32:35"
+        crtExpiry: "2022-08-10T04:32:35Z"
     enableEndpointSlices: true
     enablePodAntiAffinity: true
     proxy:
@@ -42,7 +42,7 @@ spec:
         memory:
           limit: 250Mi
           request: 20Mi
-    controllerReplicas: 3
+    controllerReplicas: 2
     controllerResources: &controller_resources
       cpu: &controller_resources_cpu
         limit: ""
