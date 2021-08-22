@@ -7,7 +7,6 @@ resources:
 - k8s-at-home-charts.yaml
 - kubernetes-dashboard.yaml
 - pihole.yaml
-- linkerd.yaml
 - longhorn.yaml
 - prometheus-community-charts.yaml
 - grafana-charts.yaml
