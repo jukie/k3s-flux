@@ -20,7 +20,7 @@ spec:
     image:
       repository: ghcr.io/zwave-js/zwavejs2mqtt
       pullPolicy: IfNotPresent
-      tag: 5.5.0
+      tag: 5.5.1
     env:
       TZ: "America/Denver"
       NETWORK_KEY: "${SECRET_ZWAVE_KEY}"
