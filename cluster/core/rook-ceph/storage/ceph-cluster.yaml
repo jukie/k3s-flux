@@ -58,12 +58,25 @@ spec:
       limits:
         memory: 4096Mi
   storage:
-    useAllNodes: true
+    useAllNodes: false
     useAllDevices: false
     config:
       metadataDevice:
       osdsPerDevice: "1"
-    deviceFilter: sda
-    devices:
-      - name: sda
+    nodes:
+    - name: "k3s1"
+      devices:
+      - name: "sda"
+    - name: "k3s2"
+      devices:
+      - name: "sda"
+    - name: "k3s3"
+      devices:
+      - name: "sda"
+    - name: "k3s4"
+      devices:
+      - name: "sda"
+    - name: "k3s5"
+      devices:
+      - name: "sda"
 
