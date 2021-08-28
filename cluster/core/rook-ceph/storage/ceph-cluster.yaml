@@ -63,6 +63,7 @@ spec:
     config:
       metadataDevice:
       osdsPerDevice: "1"
+    deviceFilter: sda
     devices:
       - name: sda
 
