@@ -46,8 +46,6 @@ spec:
     persistence:
       config:
         enabled: true
-        accessModes:
-        - ReadWriteOnce
         resources:
           requests:
             storage: 1Gi
@@ -55,7 +53,6 @@ spec:
         enabled: true
         type: hostPath
         hostPath: ${SECRET_ZWAVE_SERIAL}
-        hostPathType: CharDevice
     affinity:
       nodeAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:

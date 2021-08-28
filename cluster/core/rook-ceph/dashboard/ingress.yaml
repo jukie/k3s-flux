@@ -1,0 +1,34 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: rook-ceph-mgr-dashboard
+  namespace: rook-ceph
+  annotations:
+    cert-manager.io/issuer: cf-issuer
+    cert-manager.io/issuer-group: cert-manager.k8s.cloudflare.com
+    cert-manager.io/issuer-kind: OriginIssuer
+    external-dns.alpha.kubernetes.io/target: ${SECRET_DOMAIN}
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/configuration-snippet: "proxy_set_header l5d-dst-override
+      $service_name.$namespace.svc.cluster.local:$service_port;\ngrpc_set_header l5d-dst-override
+      $service_name.$namespace.svc.cluster.local:$service_port; \n"
+  labels:
+    app.kubernetes.io/instance: rook-ceph-mgr-dashboard
+    app.kubernetes.io/name: rook-ceph-mgr-dashboard
+spec:
+  ingressClassName: "nginx"
+  rules:
+    - host: "rook.${SECRET_DOMAIN}"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: rook-ceph-mgr-dashboard
+                port:
+                  name: http-dashboard
+  tls:
+    - hosts:
+        - "rook.${SECRET_DOMAIN}"
