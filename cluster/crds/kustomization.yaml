@@ -4,4 +4,4 @@ resources:
 - cert-manager
 #- rook-ceph
 #- external-snapshotter
-- kube-prometheus-stack
+#- kube-prometheus-stack
