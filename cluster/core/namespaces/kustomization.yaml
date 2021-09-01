@@ -6,7 +6,5 @@ resources:
 - metallb-system.yaml
 - networking.yaml
 - home.yaml
-#- longhorn-system.yaml
-#- rook-ceph.yaml
-- openebs-system.yaml
+- longhorn-system.yaml
 - monitoring.yaml

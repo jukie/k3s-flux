@@ -6,10 +6,7 @@ resources:
 - jetstack-charts.yaml
 - k8s-at-home-charts.yaml
 - kubernetes-dashboard.yaml
-- pihole.yaml
-- openebs.yaml
-#- longhorn.yaml
-#- rook-ceph-charts.yaml
+- longhorn.yaml
 - prometheus-community-charts.yaml
 - grafana-charts.yaml
 - stakater-charts.yaml
