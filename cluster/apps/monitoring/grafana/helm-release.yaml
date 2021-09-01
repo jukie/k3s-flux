@@ -141,7 +141,6 @@ spec:
         secretName: grafana-tls
     persistence:
       enabled: true
-      storageClassName: "rook-ceph-block"
       size: 10Gi
       accessModes:
       - ReadWriteOnce
