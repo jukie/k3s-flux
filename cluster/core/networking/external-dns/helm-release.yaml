@@ -21,7 +21,7 @@ spec:
     image:
       registry: k8s.gcr.io
       repository: external-dns/external-dns
-      tag: v0.10.0
+      tag: v0.10.1
     logLevel: debug
     provider: cloudflare
     cloudflare:
