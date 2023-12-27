@@ -20,7 +20,7 @@ spec:
   values:
     image:
       repository: homeassistant/home-assistant
-      tag: 2021.12.10
+      tag: 2023.12.4
     #hostNetwork: true
     dnsPolicy: ClusterFirstWithHostNet
     service:
